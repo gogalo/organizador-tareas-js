@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Organizador de tareas</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="menu">
+      <h1>Organizador de tareas</h1>
+      <div class="buttons">
+          <button class="add-new">Tarea nueva</button>
+      </div>
+  </nav>
+
+  <div class="form glassmorphism-effect">
+      <form action="">
+          <div>
+            <label for="title">Título</label>
+            <input type="text" name="title" id="title">
+          </div>
+
+          <div>
+            <label for="datetask">Fecha</label>
+            <input type="date" name="datetask" id="datetask">
+          </div>
+
+          <div>
+            <label for="description">Descripción</label>
+            <textarea name="description" id="description"></textarea>
+          </div>
+
+          <button class="add">Añadir</button>
+          <button class="close">Cerrar</button>
+      </form>
+  </div>
+
+  <div class="container glassmorphism-effect">
+    <section class="tasksTable">
+
+    </section>
+  </div>
+
+<div class="bubble bubble-one glassmorphism-effect"></div>
+<div class="bubble bubble-two glassmorphism-effect"></div>
+<div class="bubble bubble-three glassmorphism-effect"></div>
+<div class="bubble bubble-four glassmorphism-effect"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

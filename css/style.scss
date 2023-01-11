@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap');
+
+//variables
+$color-text-primary: #fff;
+$color-text-secondary: #000;
+$bg-color-primary: rgb(29, 120, 255);
+$bg-color-secondary: rgb(214, 0, 148);
+$body-font-family: 'Nunito', sans-serif;
+$base-font-size: 1.6rem;
+
+//botones
+%button{
+  margin: 1rem 0;
+  cursor: pointer;
+  color:$color-text-primary;
+  background-color: $bg-color-primary;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  padding:1.5rem 2rem;
+  border-radius:2.5rem;
+  font-size: inherit;
+  font-size: inherit;
+}
+
+.glassmorphism-effect {
+  background: rgba( 255, 255, 255, 0.10 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border-radius: 16px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+      
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  html{
+    font-size: 62.5%;
+  }
+  
+  body {
+    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    font-family: $body-font-family;
+    color:$color-text-primary;
+    font-size: $base-font-size;
+    min-height: 100vh;
+    text-align: center;
+  }
+
+
+  .container{
+    position: absolute;
+    width: 90%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    height: 80vh;
+    padding: 1rem 1.4rem;
+  }
+
+  nav{
+    position: relative;
+    z-index: 2;
+
+    & button{
+      @extend %button;
+
+      &:hover{
+        opacity: 0.7;
+      } 
+    }
+  }
+
+  .form{
+    position: absolute;
+    display: none;
+    width: 30%;
+    top:30%;
+    right:1%;
+    z-index: 3;
+    padding: 2rem;
+
+    & *{
+      width:100%;
+      display:block;
+      padding:1rem 2.5rem;
+    }
+
+    & input, & textarea{     
+      border: 1px solid rgba( 255, 255, 255, 0.18 );     
+      border-radius:2.5rem;
+      background:rgba(255,255,255,.1);
+      font-family: inherit;
+    }
+
+    & *:not(button):focus{
+      outline: 3px solid #9999FF;
+      background:$color-text-primary;
+      color:$color-text-secondary;
+    }
+
+
+    & label{
+        font-weight: bold;
+        padding-top: 1rem;
+        text-align: left;
+    }
+
+    & textarea{
+      height: 200px;
+      resize:none;
+    }
+
+    & button.add, & button.close{
+      @extend %button;
+        
+      &:hover{
+          opacity: 0.7;
+      }    
+    }
+
+  }
+
+  .tasksTable{
+    display: flex;
+    flex-wrap: wrap;
+
+    & .task-single{
+      margin: 1rem;
+      padding:1rem 2.2rem;
+      width: 23%;
+      display: flex;
+      position: relative;
+      text-align: left;
+      font-weight: bold;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0; 
+        right: 0; 
+        bottom: 0; 
+        left: 0;
+        z-index: -1;
+        border-width: 2px;
+        border-style: solid;
+        border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+        transform: skew(-15deg);
+      }
+
+      & > div:last-child {
+        padding-left:1.6rem;
+      }
+
+      & > div:last-child p:first-child {
+        font-size: 2rem;    
+      }
+
+      & > div:last-child p:last-child {
+        font-weight: 400; 
+      }
+
+      
+    }
+  }
+
+  .bubble {
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .bubble-one {
+    height: 80px;
+    left: 300px;
+    top: 10px;
+    width: 80px;
+  }
+
+  .bubble-two {
+    height: 230px;
+    right: 200px;
+    top: -50px;
+    width: 230px;
+  }
+
+  .bubble-three {
+    height: 50px;
+    right: 450px;
+    top: -20px;
+    width: 50px;
+  }
+
+  .bubble-four {
+    bottom: 40px;
+    height: 100px;
+    left: -30px;
+    width: 100px;
+  }
