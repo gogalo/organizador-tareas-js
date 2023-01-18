@@ -125,6 +125,17 @@ nav button:hover {
      border-image: linear-gradient(to right, darkblue, darkorchid) 1;
   transform: skew(-15deg);
 }
+.tasksTable .task-single p.delete {
+  position: absolute;
+  right: 0.6rem;
+  top: 0;
+  width: 16px;
+  height: 30px;
+  background: url(../images/trash-can-solid.svg) no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+  opacity: 0.6;
+}
 .tasksTable .task-single > div:last-child {
   padding-left: 1.6rem;
 }
