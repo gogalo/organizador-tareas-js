@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap");
-.form button.add, .form button.close, nav button {
+.form button.add, .form button.close, .form button.edit, nav button {
   margin: 1rem 0;
   cursor: pointer;
   color: #fff;
@@ -94,8 +94,11 @@ nav button:hover {
   height: 200px;
   resize: none;
 }
-.form button.add:hover, .form button.close:hover {
+.form button.add:hover, .form button.close:hover, .form button.edit:hover {
   opacity: 0.7;
+}
+.form button.edit {
+  display: none;
 }
 
 .tasksTable {
@@ -125,16 +128,22 @@ nav button:hover {
      border-image: linear-gradient(to right, darkblue, darkorchid) 1;
   transform: skew(-15deg);
 }
-.tasksTable .task-single p.delete {
+.tasksTable .task-single p.delete, .tasksTable .task-single p.edit {
   position: absolute;
   right: 0.6rem;
-  top: 0;
   width: 16px;
   height: 30px;
-  background: url(../images/trash-can-solid.svg) no-repeat center center;
   background-size: contain;
   cursor: pointer;
   opacity: 0.6;
+}
+.tasksTable .task-single p.delete {
+  top: 0;
+  background: url(../images/trash-can-solid.svg) no-repeat center center;
+}
+.tasksTable .task-single p.edit {
+  top: 2.4rem;
+  background: url(../images/pencil-solid.svg) no-repeat center center;
 }
 .tasksTable .task-single > div:last-child {
   padding-left: 1.6rem;
