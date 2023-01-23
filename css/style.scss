@@ -157,7 +157,7 @@ $base-font-size: 1.6rem;
         transform: skew(-15deg);
       }
 
-      & p.delete, & p.edit{
+      & p.task-delete, & p.task-edit{
         position: absolute;
         right: .6rem;    
         width: 16px;
@@ -167,12 +167,12 @@ $base-font-size: 1.6rem;
         opacity: 0.6;
       }
 
-      & p.delete{
+      & p.task-delete{
         top:0;
         background: url(../images/trash-can-solid.svg) no-repeat center center;
       }
 
-      & p.edit{
+      & p.task-edit{
         top:2.4rem;
         background: url(../images/pencil-solid.svg) no-repeat center center;
 
