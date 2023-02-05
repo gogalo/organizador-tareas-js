@@ -1,5 +1,3 @@
-import { addTaskArray, editValuesTaskArray } from './functions.js';
-
 const btnOpen = document.querySelector(".add-new");
 const btnClose = document.querySelector(".close");
 const addTask = document.querySelector(".add");

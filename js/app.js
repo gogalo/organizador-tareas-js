@@ -1,12 +1,14 @@
 import { 
     btnOpen,
     btnClose,
-    addTask
+    addTask,
+    editTask
 } from './Application/buttons.js';
 
 import {
     loadTasks,
     addTaskArray,
+    editValuesTaskArray,
     showTaskForm,
     hideTaskForm,
     cleanInput,
@@ -31,5 +33,5 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     
     addTask.addEventListener('click', addTaskArray);
-
+    editTask.addEventListener('click', editValuesTaskArray);
 });

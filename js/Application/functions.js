@@ -1,14 +1,14 @@
+import { LocalStorageRepository } from "../Infrastructure/Repository/LocalStorageRepository.js";
 import { Task } from "../Model/Task.js";
 import { tasksTable, addTask, editTask, box } from "./buttons.js";
 
+import { title, datetask, description, index } from "./inputs.js";
+
+const repository = new LocalStorageRepository();
 
 const loadTasks = () => {
-    if(localStorage.getItem('allTask')) {
-        const allTaskStr = localStorage.getItem("allTask");
-        const allTask = JSON.parse(allTaskStr);
-        
-        addTaskDOM(allTask);
-    }
+    const tasks = repository.getTasks();
+    addTaskDOM(tasks);
 }
 
 const cleanInput = () => {
@@ -18,76 +18,41 @@ const cleanInput = () => {
 }
 
 const addTaskArray = (e) => {
-    e.preventDefault()
-    let titleValue = title.value;
-    let datetaskValue = datetask.value;
-    let descriptionValue = description.value;
-
-    const newTask = Task.create(titleValue, datetaskValue, descriptionValue);
-
-    //I create the array
-    let allTaskRecover = [];
-
-    if(localStorage.getItem('allTask')) {
-        //get olds values and convert an array
-        allTaskRecover = JSON.parse(localStorage.getItem('allTask')); 
-    }
-    
-    //add item to array
-    allTaskRecover.push(newTask);
-    localStorage.setItem('allTask', JSON.stringify(allTaskRecover));
+    e.preventDefault();
+    const task = Task.create(title.value, datetask.value, description.value);
+    const tasks = repository.add(task);
     
     cleanInput();
-    addTaskDOM(allTaskRecover);
+    addTaskDOM(tasks);
 }
 
-const editValuesTaskArray = (indexItem) => {
-    let titleValue = title.value;
-    let datetaskValue = datetask.value;
-    let descriptionValue = description.value;
-    let indexValue = indexItem.value;
-    
-    const newTask = Task.create(titleValue, datetaskValue, descriptionValue);
+const editValuesTaskArray = (e) => {
+    e.preventDefault();
+    const task = Task.create(title.value, datetask.value, description.value);
+    const tasks = repository.edit(index.value, task);
 
-    //get olds values and convert an array
-    let allTaskRecover = JSON.parse(localStorage.getItem('allTask')); 
-
-    //update item to array
-    allTaskRecover[indexValue] = newTask;
-
-    //convert the array back into a string before storing it back in local storage.
-    localStorage.setItem('allTask', JSON.stringify(allTaskRecover));  
+    addTaskDOM(tasks);
 }
 
 const deleteTaskArray = (index) => {
-
-    //get olds values and convert an array
-    let allTaskRecover = JSON.parse(localStorage.getItem('allTask')); 
-
-	//remove matched item index
-    allTaskRecover.splice(index, 1);
-
-    //convert the array back into a string before storing it back in local storage.
-    localStorage.setItem('allTask', JSON.stringify(allTaskRecover));
+    const tasks = repository.delete(index);
 
     cleanInput();
     hideTaskForm();
-    addTaskDOM(allTaskRecover);
+    addTaskDOM(tasks);
 }
 
 const editTaskArray = (index) => {
-    let allTaskRecover = JSON.parse(localStorage.getItem('allTask')); 
-	const item = allTaskRecover[index];
-    const editTask = document.querySelector(".edit");
-    const indexItem = document.querySelector("#index");
-    
-    showTaskForm();
-    showTaskFormEditButton();
+    const indexItem = document.querySelector("#index"); 
+    const item = repository.get(index);
 
     title.value = item.title;
-    datetask.value = item.datetask;
+    datetask.value = item.date;
     description.value = item.description;
-    indexItem.value = index;
+    indexItem.value = index; 
+       
+    showTaskForm();
+    showTaskFormEditButton();
 }
 
 const addTaskDOM = (allTask) => {
@@ -108,12 +73,14 @@ const addTaskDOM = (allTask) => {
     
     tasksTable.innerHTML = tasks
 
-    //bind delete and edit actions
+    bindDeleteAndEditActions();
+}
+
+const bindDeleteAndEditActions = ()  => {
     const editTaskButtons = document.querySelectorAll(".task-edit");
     const deleteTasksButtons = document.querySelectorAll(".task-delete");
 
     editTaskButtons.forEach((button, index) => {
-        console.log('edit foreach index', index);
         button.addEventListener('click', (e) => {
             e.preventDefault();
             editTaskArray(index);
